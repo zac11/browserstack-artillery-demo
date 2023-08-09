@@ -1,0 +1,38 @@
+config:
+  target: "http://asciiart.artillery.io:8080"
+  phases:
+    - duration: 60
+      arrivalRate: 5artillery run --output test-run-report.json my-script.yaml
+      rampTo: 5
+      name: Warm up
+    - duration: 60
+      arrivalRate: 10
+      rampTo: 50
+      name: Ramp up to peak load
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 10
+      name: Ramp up load
+    - duration: 30
+      arrivalRate: 10
+      rampTo: 30
+      name: Spike phase
+    - duration: 300
+      arrivalRate: 50
+      name: Sustained peak load
+  ensure:
+    thresholds:
+      - http.response_time.p99: 100
+      - http.response_time.p95: 75
+scenarios:
+  - flow:
+      - loop:
+        - get:
+            url: "/dino"
+        - get:
+            url: "/pony"
+        - get:
+            url: "/armadillo"
+        count: 100
+
+

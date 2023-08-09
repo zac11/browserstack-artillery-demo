@@ -1,0 +1,27 @@
+{
+  "name": "browserstack-artillery-demo",
+  "version": "1.0.0",
+  "description": "Artillery demo for Browserstack Delhi NCR meetup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zac11/browserstack-artillery-demo.git"
+  },
+  "keywords": [
+    "artillery",
+    "performance",
+    "tests"
+  ],
+  "author": "RY",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zac11/browserstack-artillery-demo/issues"
+  },
+  "homepage": "https://github.com/zac11/browserstack-artillery-demo#readme",
+  "dependencies": {
+    "artillery": "^2.0.0-35"
+  }
+}
