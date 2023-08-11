@@ -3,23 +3,17 @@ config:
   phases:
     - duration: 60
       arrivalRate: 5
-      rampTo: 5
-      name: Warm up
-    - duration: 60
+     # maxVusers: 5
+      name: Constant arrival
+    - duration: 180
       arrivalRate: 10
       rampTo: 50
-      name: Ramp up to peak load
+      name: Ramp up to specified load
     - duration: 60
-      arrivalRate: 5
-      rampTo: 10
-      name: Ramp up load
-    - duration: 30
-      arrivalRate: 10
-      rampTo: 30
-      name: Spike phase
-    - duration: 300
-      arrivalRate: 50
-      name: Sustained peak load
+      arrivalCount: 20
+      name: Fixed arrival for this duration
+    - pause: 20
+      name: Pause for this duration
   ensure:
     thresholds:
       - http.response_time.p99: 100

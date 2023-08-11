@@ -1,0 +1,22 @@
+config:
+  target: 'https://reqres.in/api'
+  phases:
+    - name: "First Test"
+      duration: 5
+      arrivalRate: 2
+      rampTo: 2
+
+  plugins:
+    expect: {}
+
+scenarios:
+  - name: "Get a single user"
+    flow:
+        - get:
+            url: "/users/2"
+            expect:
+              - statusCode: 200
+              - contentType: json
+              - equals:
+                  - respMessage: "OK"
+              #- hasProperty: "data[0].id"

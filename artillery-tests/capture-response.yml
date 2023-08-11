@@ -1,0 +1,28 @@
+config:
+  target: 'https://reqres.in/api'
+  phases:
+    - name: "Test with query string and validation"
+      duration: 5
+      arrivalRate: 2
+      rampTo: 2
+
+  plugins:
+    expect: {}
+
+scenarios:
+  - name: "Get a single user"
+    flow:
+        - get:
+            url: "/users"
+            qs:
+              page: 2
+            capture:
+              - json: $.total
+                as: total_users
+            expect:
+              - statusCode: 200
+              - contentType: json
+              - equals:
+                - 12
+                - {{"total_users"}}
+        - log: "Total users is {{ total_users }}"
